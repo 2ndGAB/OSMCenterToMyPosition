@@ -15,6 +15,7 @@ public class Fragment_welcome extends Fragment {
     private RotationGestureOverlay mRotationGestureOverlay;
     private ResourceProxy mResourceProxy;
     protected ImageButton btCenterMap;
+    protected ImageButton btFollowMe;
 
 
     public Fragment_welcome() {
@@ -90,6 +91,22 @@ public class Fragment_welcome extends Fragment {
                 Log.i(Constants.APP_TAG, "centerMap clicked ");
                 GeoPoint myPosition = new GeoPoint(currentLocaion.getLatitude(), currentLocation.getLongitude());
                 mMapView.getController().animateTo(myPosition);
+            }
+        });
+
+        btFollowMe = (ImageButton) view.findViewById(R.id.ic_follow_me);
+
+        btFollowMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(Constants.APP_TAG, "btFollowMe clicked ");
+                if (!mLocationOverlay.isFollowLocationEnabled()) {
+                    mLocationOverlay.enableFollowLocation();
+                    btFollowMe.setImageResource(R.drawable.ic_follow_me_on);
+                } else {
+                    mLocationOverlay.disableFollowLocation();
+                    btFollowMe.setImageResource(R.drawable.ic_follow_me);
+                }
             }
         });
 
