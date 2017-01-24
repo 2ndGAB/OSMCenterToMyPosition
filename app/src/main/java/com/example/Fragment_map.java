@@ -16,6 +16,7 @@ public class Fragment_welcome extends Fragment {
     private ResourceProxy mResourceProxy;
     protected ImageButton btCenterMap;
     protected ImageButton btFollowMe;
+    protected ImageButton btOrthoMap;
 
 
     public Fragment_welcome() {
@@ -107,6 +108,16 @@ public class Fragment_welcome extends Fragment {
                     mLocationOverlay.disableFollowLocation();
                     btFollowMe.setImageResource(R.drawable.ic_follow_me);
                 }
+            }
+        });
+
+        btOrthoMap = (ImageButton) view.findViewById(R.id.ic_map_ortho);
+
+        btOrthoMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(Constants.APP_TAG, "btOrthoMap clicked ");
+                mMapView.setMapOrientation(0);
             }
         });
 
